@@ -4,12 +4,22 @@ import themeSlice from "./themeSlice";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import persistStore from "redux-persist/es/persistStore";
+import { apiMiddleware, apiReducer, apiReducerPath } from "../api/apiSlice";
+
+const themePersistConfig = {
+  key: "theme",
+  storage,
+};
+
+const persistedThemeReducer = persistReducer(themePersistConfig, themeSlice);
 
 const store = configureStore({
   reducer: {
     user: userSlice,
-    theme: persistReducer({ key: "user", storage }, themeSlice),
+    theme: persistedThemeReducer,
+    [apiReducerPath]: apiReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiMiddleware),
 });
 
 export default store;

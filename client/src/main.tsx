@@ -16,7 +16,7 @@ const Main = () => {
         main: colors.teal[500],
       },
       secondary: {
-        main: colors.green[500],
+        main: dark ? colors.green[500] : colors.deepPurple[100],
       },
     },
   });

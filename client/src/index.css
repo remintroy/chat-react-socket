@@ -16,3 +16,37 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.dummy {
+  height: 500px;
+}
+
+.dim {
+  color: rgb(124, 124, 124);
+}
+
+.dimm {
+  filter: opacity(50%);
+}
+
+.sm {
+  font-size: smaller;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.txtInLink {
+  color: inherit;
+}
+.line {
+  display: block;
+  height: 1px;
+  margin: 10px 0;
+}
+
+.b {
+  font-weight: bold;
+}

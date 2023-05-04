@@ -9,10 +9,12 @@ const UserListComponentItem = ({ index }: { index: number }) => {
         </ListItemAvatar>
         <ListItemText sx={{ flexGrow: 100 }}>
           <Typography fontWeight="bold">Remin T Roy {index}</Typography>
-          <Typography variant="caption">hasddddd safa af sdf asfd adf i</Typography>
+          <Typography variant="caption">Uii</Typography>
         </ListItemText>
         <ListItemText sx={{ textAlign: "end" }}>
-          <Typography color="green" variant="caption" component={"div"}>online</Typography>
+          <Typography color="lightgreen" variant="caption" component={"div"}>
+            online
+          </Typography>
           <Badge badgeContent={4} color="secondary" sx={{ mr: "15px" }} />
         </ListItemText>
       </ListItemButton>
@@ -22,7 +24,7 @@ const UserListComponentItem = ({ index }: { index: number }) => {
 
 const UsersListComponent = ({ data }: { data: string[] }) => {
   return (
-    <List sx={{}}>
+    <List>
       {data.map((uid, index) => {
         return <UserListComponentItem key={uid} index={index + 1} />;
       })}

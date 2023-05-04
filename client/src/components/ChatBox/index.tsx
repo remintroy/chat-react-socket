@@ -6,13 +6,10 @@ import BottomInputsToolComponent from "./BottomInputs";
 import ChatSubComponent from "./Chat";
 
 const ChatBoxComponent = () => {
-  const theme: any = useTheme();
-
   return (
     <>
       <TopToolBarComponent />
-      <ChatSubComponent/>
-     
+      <ChatSubComponent />
       <BottomInputsToolComponent />
     </>
   );
