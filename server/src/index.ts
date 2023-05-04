@@ -1,27 +1,19 @@
 import express from "express";
-import { Server } from "socket.io";
-import dotenv from "dotenv";
-
-dotenv.config();
+import mongoose from "mongoose";
+import http from "http";
+import getConfigs from "./configs";
+import expressConfig from "./frameworks/webserver/express";
+import serverConfig from "./frameworks/webserver/connection";
+import routes from "./frameworks/webserver/routes";
+import mongoDbConnection from "./frameworks/mongodb/connection";
 
 const app = express();
-const port = Number(process.env.PORT) || 5000;
+const server = http.createServer(app);
 
-const io = new Server(8082, {
-  cors: {
-    origin: ["http://localhost:8081"],
-  },
-});
+mongoDbConnection(mongoose, getConfigs).connectToMongodb();
 
-io.on("connection", (socket) => {
-  socket.emit("welcome", "Hello world");
-  socket.on("handshake", (message) => {
-    console.log(`Got handshake from ${message}`);
-  });
-});
+expressConfig(app, getConfigs);
 
-app.use((req, res) => {
-  res.send("server is running");
-});
+routes(app, express, getConfigs);
 
-app.listen(port, () => console.log(`server is listening on ${port}`));
+serverConfig(server, getConfigs).startServer();

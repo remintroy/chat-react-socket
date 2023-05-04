@@ -4,24 +4,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const socket_io_1 = require("socket.io");
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
+const mongoose_1 = __importDefault(require("mongoose"));
+const http_1 = __importDefault(require("http"));
+const configs_1 = __importDefault(require("./configs"));
+const express_2 = __importDefault(require("./frameworks/webserver/express"));
+const connection_1 = __importDefault(require("./frameworks/webserver/connection"));
+const routes_1 = __importDefault(require("./frameworks/webserver/routes"));
+const connection_2 = __importDefault(require("./frameworks/mongodb/connection"));
 const app = (0, express_1.default)();
-const port = Number(process.env.PORT) || 5000;
-const io = new socket_io_1.Server(8082, {
-    cors: {
-        origin: ["http://localhost:8081"],
-    },
-});
-io.on("connection", (socket) => {
-    socket.emit("welcome", "Hello world");
-    socket.on("handshake", (message) => {
-        console.log(`Got handshake from ${message}`);
-    });
-});
-app.use((req, res) => {
-    res.send("server is running");
-});
-app.listen(port, () => console.log(`server is listening on ${port}`));
+const server = http_1.default.createServer(app);
+(0, connection_2.default)(mongoose_1.default, configs_1.default).connectToMongodb();
+(0, express_2.default)(app, configs_1.default);
+(0, routes_1.default)(app, express_1.default, configs_1.default);
+(0, connection_1.default)(server, configs_1.default).startServer();
 //# sourceMappingURL=index.js.map
