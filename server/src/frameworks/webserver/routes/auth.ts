@@ -17,6 +17,7 @@ export default function authRouter(express: typeof ExpressApp) {
 
   router.route("/login").post(makeExpressResponseCallback(authController.postUserLogin));
   router.route("/signup").post(makeExpressResponseCallback(authController.postUserSignUp));
+  router.route("/check_username/:id").get(makeExpressResponseCallback(authController.getUserNameAvailability));
 
   return router;
 }

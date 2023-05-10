@@ -20,6 +20,12 @@ const authServiceImpl = () => {
     if (password.length < config.auth.minPasswordLength) throw `Password must be at least ${config.auth.minPasswordLength} chars`;
     return password.trim();
   };
+  const _validateUsername = (username: string) => {
+    if (typeof username !== "string") throw "Username must be a string";
+    username = username.trim().toLowerCase();
+    if (!config.auth.userNameRejex.test(username)) throw "Invalid username";
+    return username;
+  };
 
   // Implimentation funtions
   const createRandomUid = () => _randomUid();
@@ -29,6 +35,7 @@ const authServiceImpl = () => {
   const validator = {
     validatePassword: _validatePassword,
     validateEmail: _validateEmail,
+    validateUsername: _validateUsername,
   };
 
   const jwt = {

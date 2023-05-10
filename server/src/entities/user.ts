@@ -1,5 +1,5 @@
 interface User {
-  name?: string;
+  username?: string;
   email?: string;
   password?: string;
   photoURL?: string;
@@ -10,8 +10,8 @@ interface User {
 }
 
 class User {
-  constructor({ name, email, password, photoURL, uid, disabled, friends, blocked }: User) {
-    this.name = name;
+  constructor({ username, email, password, photoURL, uid, disabled, friends, blocked }: User) {
+    this.username = username;
     this.email = email;
     this.password = password;
     this.photoURL = photoURL;

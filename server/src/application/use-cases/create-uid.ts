@@ -13,7 +13,7 @@ const caseCreateUid = async (
 
   do {
     // creates new userId
-    newUid = authService.createRandomUid();
+    newUid = await authService.createRandomUid();
     // checks if user with this uid already exists
     existingData = await userRepository.getUserDataWithUid(newUid);
     // retry until gets new uid

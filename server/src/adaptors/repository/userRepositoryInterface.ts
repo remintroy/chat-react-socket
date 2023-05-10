@@ -5,6 +5,7 @@ const userRepositoryInterface = (repository: userReopsitoryImpl) => {
   const addNewUser = (data: User) => repository.addNewUser(data);
   const getUserDataWithUid = (uid: string) => repository.getUserDataWithUid(uid);
   const getUserDataWithEmail = (email: string) => repository.getUserDataWithEmail(email);
+  const getUserDataWithUsername = (username: string) => repository.getUserDataWithUsername(username);
   const addNewFriend = (uid: string, uidToAdd: string) => repository.addNewFriend(uid, uidToAdd);
   const removeFromFriendList = (uid: string, uidToRemove: string) => repository.removeFromFriendList(uid, uidToRemove);
   const addNewBlockedUser = (uid: string, uidToBlock: string) => repository.addNewBlockedUser(uid, uidToBlock);
@@ -14,6 +15,7 @@ const userRepositoryInterface = (repository: userReopsitoryImpl) => {
     addNewUser,
     getUserDataWithUid,
     getUserDataWithEmail,
+    getUserDataWithUsername,
     addNewFriend,
     removeFromFriendList,
     addNewBlockedUser,

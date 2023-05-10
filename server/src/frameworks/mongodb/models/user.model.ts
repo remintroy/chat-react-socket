@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
 
 interface userSchema {
-  name: string;
+  username: string;
   email: string;
   password: string;
   photoURL: string;
@@ -12,7 +12,7 @@ interface userSchema {
 }
 
 const userSchema = new Schema({
-  name: String,
+  username: String,
   email: String,
   password: String,
   photoURL: String,

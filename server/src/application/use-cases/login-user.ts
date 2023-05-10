@@ -31,9 +31,9 @@ const caseUserLogin = async (
     throw createError(500, "Faild to fetch user data");
   }
 
-  if (!existingUserDataFromDb) throw createError(400, "User with this email not exist");
+  if (!existingUserDataFromDb) throw createError(400, "Account with this email not exist");
 
-  const passwordMatched = authService.isPasswordMatchWithHash(data.password, existingUserDataFromDb.password);
+  const passwordMatched = await authService.isPasswordMatchWithHash(data.password, existingUserDataFromDb.password);
 
   if (!passwordMatched) throw createError(400, "Incorrect password");
 
@@ -43,7 +43,7 @@ const caseUserLogin = async (
   return {
     accessToken,
     refreshToken,
-    name: existingUserDataFromDb.name,
+    username: existingUserDataFromDb.username,
     uid: existingUserDataFromDb.uid,
     friends: existingUserDataFromDb.friends,
   };

@@ -8,7 +8,7 @@ const getConfigs = () => {
       port: process.env.PORT || 5000,
       baseURl: "/",
       serverId: "1",
-      appBaseUrl: "/blog",
+      authBaseUrl: "/auth",
       adminBaseUrl: "/blog/su",
     },
     jwt: {
@@ -16,19 +16,20 @@ const getConfigs = () => {
       accessOption: {
         expiresIn: "20m",
       },
-      refreshSecret: process.env.JWT_ACCESS_TOKEN_SECRET,
+      refreshSecret: process.env.JWT_REFRESH_TOKEN_SECRET,
       refreshOption: {
         expiresIn: "365d",
       },
     },
     cors: {
-      origin: ["*", "https://dynotxt.com", "https://admin.dynotxt.com"],
+      origin: ["*", "http://localhost:8081"],
       credentials: true,
     },
     auth: {
       minPasswordLength: 6,
       uidLength: 28,
-      passwordSalt: 225,
+      passwordSalt: 10,
+      userNameRejex: /^[a-z0-9_]+$/,
     },
     mongo: {
       url: process.env.MONGODB_URL,
@@ -41,7 +42,10 @@ const getConfigs = () => {
         connectTimeoutMS: 1000,
       },
     },
-    actions: {},
+    actions: {
+      USERNAME_AVILABLE: "AVLB",
+      USERNAME_UNAVILABLE: "UNAVLB",
+    },
   };
 };
 export default getConfigs;

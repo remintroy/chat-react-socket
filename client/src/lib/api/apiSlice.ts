@@ -43,11 +43,14 @@ const apiSlice = createApi({
       }),
     }),
     signup: builder.mutation({
-      query: (emailAndPassword) => ({
+      query: (emailPasswordAndUserName) => ({
         url: "/signup",
         method: "POST",
-        body: emailAndPassword,
+        body: emailPasswordAndUserName,
       }),
+    }),
+    checkUserNameAvailability: builder.query({
+      query: (userName) => `/check_username/${userName}`,
     }),
   }),
 });
@@ -55,4 +58,4 @@ const apiSlice = createApi({
 export const apiReducer = apiSlice.reducer;
 export const apiReducerPath = apiSlice.reducerPath;
 export const apiMiddleware = apiSlice.middleware;
-export const { useLoginMutation, useSignupMutation } = apiSlice;
+export const { useLoginMutation, useSignupMutation, useCheckUserNameAvailabilityQuery } = apiSlice;

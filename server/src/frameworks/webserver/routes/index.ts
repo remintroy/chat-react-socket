@@ -7,7 +7,7 @@ import errorHandlingMiddlware from "../middlewares/errorHandlingMiddleware";
 export default function routes(app: Express, express: typeof ExpressApp, configs: typeof getConfigs) {
   const config = configs();
 
-  app.use(`${config.server.appBaseUrl}/api/v1`, authRouter(express));
+  app.use(`${config.server.authBaseUrl}/api/v1`, authRouter(express));
 
   app.all("*", notFoundError);
   app.use(errorHandlingMiddlware);

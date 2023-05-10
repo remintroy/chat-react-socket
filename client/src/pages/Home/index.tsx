@@ -20,7 +20,7 @@ const HomePage = () => {
           <SearchComponent />
           <Box
             sx={{
-              borderRight: `1px solid ${theme.palette.action.hover}`,
+              borderRight: `1px solid ${theme.palette.action.selected}`,
               height: "100%",
               overflowX: "hidden",
               "::-webkit-scrollbar": {
